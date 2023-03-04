@@ -55,7 +55,7 @@ function App() {
           </p>
         </div>
       </div>
-      <div className="flex flex-row w-full justify-center">
+      <div className="flex flex-row mb-4 w-full justify-center">
         <div className=" h-full gap-2 w-4/6 grid grid-cols-4">
           <Card />
           <Card />
