@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import Card from "./components/card";
 function App() {
@@ -5,7 +6,22 @@ function App() {
   const institute = ["IIT", "NIT", "Kerala University", "CUCET"];
   const skills = ["React", "Next.js", "Node.js", "Figma"];
   const languages = ["Hindi", "English", "Malayalam"];
+  const [userdata, setUserData] = useState([
+    { name: "Don Jose Mathew", mail: "Examplez@example.com", uid: 768766768 },
+    { name: "Anirudh", mail: "Examplez@example.com", uid: 768762232 },
+    { name: "Adarsh M", mail: "Examplez@example.com", uid: 7687669 },
+  ]);
+  const [selected, setSelected] = useState([]);
+  const add = (id) => {
+    setSelected([...selected, id]);
+  };
+  const remove = (id) => {
+    const removed = selected.filter((item) => {
+      return item != id;
+    });
 
+    setSelected([...removed]);
+  };
   return (
     <div>
       <div className="bg-[#D7DFDC] p-8 px-20">
@@ -50,19 +66,18 @@ function App() {
           <p className="p-1 font-medium flex flex-row text-emerald-500">
             Selected Candidates{" "}
             <div className="bg-emerald-500 ml-2 text-white flex items-center justify-center w-6 h-6 rounded-full ">
-              {4}
+              {selected.length}
             </div>
           </p>
         </div>
       </div>
       <div className="flex flex-row mb-4 w-full justify-center">
-        <div className=" h-full gap-2 w-4/6 grid grid-cols-4">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+        <div className=" h-full gap-2 w-4/6 grid grid-cols-3">
+          {userdata.map((item) => {
+            return (
+              <Card selected={selected} add={add} remove={remove} data={item} />
+            );
+          })}
         </div>
         <div className="p-4 bg-opacity-20 flex flex-col mx-10 bg-[#D7DFDC] w-1/6">
           <p className="font-medium text-gray-700">Work Experience</p>
