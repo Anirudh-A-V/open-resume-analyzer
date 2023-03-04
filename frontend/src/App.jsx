@@ -1,11 +1,31 @@
+import { useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import Card from "./components/card";
-import { useState } from "react";
+
 function App() {
   const experiences = ["1", "2", "3", "4", "5+"];
   const institute = ["IIT", "NIT", "Kerala University", "CUCET"];
   const skills = ["React", "Next.js", "Node.js", "Figma"];
   const languages = ["Hindi", "English", "Malayalam"];
+  
+  const [userdata, setUserData] = useState([
+    { name: "Don Jose Mathew", mail: "Examplez@example.com", uid: 768766768 },
+    { name: "Anirudh", mail: "Examplez@example.com", uid: 768762232 },
+    { name: "Adarsh M", mail: "Examplez@example.com", uid: 7687669 },
+  ]);
+
+  const [candidates, setCandidates] = useState([]);
+
+  const add = (id) => {
+    setCandidates([...candidates, id]);
+  };
+
+  const remove = (id) => {
+    const removed = candidates.filter((item) => {
+      return item != id;
+    });
+    setCandidates([...removed]);
+  };
 
   const [selected, setSelected] = useState({
     experience: [],
@@ -74,7 +94,7 @@ function App() {
     }
     console.log(selected);
   };
-
+  
   return (
     <div>
       <div className="bg-[#D7DFDC] p-8 px-20">
@@ -119,19 +139,18 @@ function App() {
           <p className="p-1 font-medium flex flex-row text-emerald-500">
             Selected Candidates{" "}
             <div className="bg-emerald-500 ml-2 text-white flex items-center justify-center w-6 h-6 rounded-full ">
-              {4}
+              {candidates.length}
             </div>
           </p>
         </div>
       </div>
       <div className="flex flex-row mb-4 w-full justify-center">
-        <div className=" h-full gap-2 w-4/6 grid grid-cols-4">
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
-          <Card />
+        <div className=" h-full gap-2 w-4/6 grid grid-cols-3">
+          {userdata.map((item) => {
+            return (
+              <Card selected={candidates} add={add} remove={remove} data={item} />
+            );
+          })}
         </div>
         <div className="p-4 bg-opacity-20 flex flex-col mx-10 bg-[#D7DFDC] w-1/6">
           <p className="font-medium text-gray-700">Work Experience</p>
@@ -185,7 +204,8 @@ function App() {
                     {item}
                   </p>
                 )
-            )})}
+              )
+            })}
           </div>{" "}
           <p className="font-medium mt-6 text-gray-700">Languages</p>
           <div className="mt-2 flex flex-wrap">
