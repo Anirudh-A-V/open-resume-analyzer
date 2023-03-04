@@ -1,10 +1,79 @@
 import { FaCloudUploadAlt } from "react-icons/fa";
 import Card from "./components/card";
+import { useState } from "react";
 function App() {
   const experiences = ["1", "2", "3", "4", "5+"];
   const institute = ["IIT", "NIT", "Kerala University", "CUCET"];
   const skills = ["React", "Next.js", "Node.js", "Figma"];
   const languages = ["Hindi", "English", "Malayalam"];
+
+  const [selected, setSelected] = useState({
+    experience: [],
+    institute: [],
+    skills: [],
+    languages: [],
+  });
+
+  const handleExperience = (item) => {
+    if (selected.experience.includes(item)) {
+      setSelected({
+        ...selected,
+        experience: selected.experience.filter((element) => element !== item),
+      });
+    } else {
+      setSelected({
+        ...selected,
+        experience: [...selected.experience, item],
+      });
+    }
+    console.log(selected);
+  };
+
+  const handleInstitute = (item) => {
+    if (selected.institute.includes(item)) {
+      setSelected({
+        ...selected,
+        institute: selected.institute.filter((element) => element !== item),
+      });
+    } else {
+      setSelected({
+        ...selected,
+        institute: [...selected.institute, item],
+      });
+    }
+    console.log(selected);
+  };
+
+  const handleSkills = (item) => {
+    console.log(item.target);
+    if (selected.skills.includes(item)) {
+      setSelected({
+        ...selected,
+        skills: selected.skills.filter((element) => element !== item),
+      });
+    } else {
+      setSelected({
+        ...selected,
+        skills: [...selected.skills, item],
+      });
+    }
+    console.log(selected);
+  };
+
+  const handleLanguages = (item) => {
+    if (selected.languages.includes(item)) {
+      setSelected({
+        ...selected,
+        languages: selected.languages.filter((element) => element !== item),
+      });
+    } else {
+      setSelected({
+        ...selected,
+        languages: [...selected.languages, item],
+      });
+    }
+    console.log(selected);
+  };
 
   return (
     <div>
@@ -69,9 +138,18 @@ function App() {
           <div className="mt-2 flex flex-wrap">
             {experiences.map((item) => {
               return (
-                <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs">
-                  {item}
-                </p>
+                // <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs" onClick={(e) => handleExperience()}>
+                //   {item}
+                // </p>
+                selected.experience.includes(item) ? (
+                  <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs bg-gray-800 text-white  cursor-pointer" onClick={() => handleExperience(item)}>
+                    {item}
+                  </p>
+                ) : (
+                  <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs cursor-pointer" onClick={() => handleExperience(item)}>
+                    {item}
+                  </p>
+                )
               );
             })}
           </div>
@@ -79,9 +157,18 @@ function App() {
           <div className="mt-2 flex flex-wrap">
             {institute.map((item) => {
               return (
-                <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs">
-                  {item}
-                </p>
+                // <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs" onClick={() => handleInstitute(item)}>
+                //   {item}
+                // </p>
+                selected.institute.includes(item) ? (
+                  <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs bg-gray-800 text-white  cursor-pointer" onClick={() => handleInstitute(item)}>
+                    {item}
+                  </p>
+                ) : (
+                  <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs cursor-pointer" onClick={() => handleInstitute(item)}>
+                    {item}
+                  </p>
+                )
               );
             })}
           </div>
@@ -89,19 +176,30 @@ function App() {
           <div className="mt-2 flex flex-wrap">
             {skills.map((item) => {
               return (
-                <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs">
-                  {item}
-                </p>
-              );
-            })}
+                selected.skills.includes(item) ? (
+                  <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs bg-gray-800 text-white  cursor-pointer" onClick={() => handleSkills(item)}>
+                    {item}
+                  </p>
+                ) : (
+                  <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs cursor-pointer" onClick={() => handleSkills(item)}>
+                    {item}
+                  </p>
+                )
+            )})}
           </div>{" "}
           <p className="font-medium mt-6 text-gray-700">Languages</p>
           <div className="mt-2 flex flex-wrap">
             {languages.map((item) => {
               return (
-                <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs">
-                  {item}
-                </p>
+                selected.languages.includes(item) ? (
+                  <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs bg-gray-800 text-white  cursor-pointer" onClick={() => handleLanguages(item)}>
+                    {item}
+                  </p>
+                ) : (
+                  <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs cursor-pointer" onClick={() => handleLanguages(item)}>
+                    {item}
+                  </p>
+                )
               );
             })}
           </div>
