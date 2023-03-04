@@ -1,4 +1,5 @@
 import { FaCloudUploadAlt } from "react-icons/fa";
+import Card from "./components/card";
 function App() {
   const experiences = ["1", "2", "3", "4", "5+"];
   const institute = ["IIT", "NIT", "Kerala University", "CUCET"];
@@ -32,49 +33,78 @@ function App() {
           </div>
         </div>
       </div>
-      <div className="flex text-gray-700 flex-row p-5 px-20">
-        <p className="text-sm mx-1 px-4 py-0 rounded-full tracking-tight bread-crumbs">
-          Product Designer
-        </p>
-        <p className="text-sm mx-1 px-4 py-0 rounded-full tracking-tight bread-crumbs">
-          Frontend Designer
-        </p>
-        <p className="text-sm mx-1 px-4 py-0 rounded-full tracking-tight bread-crumbs">
-          DevOps Developer
-        </p>
+
+      <div className="flex flex-row justify-between text-gray-700  p-5 px-20">
+        <div className="flex-row flex items-center">
+          <p className="text-sm mx-1 px-4 py-0 rounded-full tracking-tight bread-crumbs">
+            Product Designer
+          </p>
+          <p className="text-sm mx-1 px-4 py-0 rounded-full tracking-tight bread-crumbs">
+            Frontend Designer
+          </p>
+          <p className="text-sm mx-1 px-4 py-0 rounded-full tracking-tight bread-crumbs">
+            DevOps Developer
+          </p>
+        </div>
+        <div className="">
+          <p className="p-1 font-medium flex flex-row text-emerald-500">
+            Selected Candidates{" "}
+            <div className="bg-emerald-500 ml-2 text-white flex items-center justify-center w-6 h-6 rounded-full ">
+              {4}
+            </div>
+          </p>
+        </div>
       </div>
-      <div className="p-4 bg-opacity-20 flex flex-col mx-10 bg-[#D7DFDC] w-1/6">
-        <p className="font-medium text-gray-700">Work Experience</p>
-        <div className="mt-2 flex flex-wrap">
-          {experiences.map((item) => {
-            return (
-              <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs">
-                {item}
-              </p>
-            );
-          })}
+      <div className="flex flex-row w-full justify-center">
+        <div className=" h-full gap-2 w-4/6 grid grid-cols-4">
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
+          <Card />
         </div>
-
-        <p className="font-medium mt-6 text-gray-700">Education Background</p>
-        <div className="mt-2 flex flex-wrap">
-          {institute.map((item) => {
-            return (
-              <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs">
-                {item}
-              </p>
-            );
-          })}
-        </div>
-
-        <p className="font-medium mt-6 text-gray-700">Skills</p>
-        <div className="mt-2 flex flex-wrap">
-          {skills.map((item) => {
-            return (
-              <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs">
-                {item}
-              </p>
-            );
-          })}
+        <div className="p-4 bg-opacity-20 flex flex-col mx-10 bg-[#D7DFDC] w-1/6">
+          <p className="font-medium text-gray-700">Work Experience</p>
+          <div className="mt-2 flex flex-wrap">
+            {experiences.map((item) => {
+              return (
+                <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs">
+                  {item}
+                </p>
+              );
+            })}
+          </div>
+          <p className="font-medium mt-6 text-gray-700">Education Background</p>
+          <div className="mt-2 flex flex-wrap">
+            {institute.map((item) => {
+              return (
+                <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs">
+                  {item}
+                </p>
+              );
+            })}
+          </div>
+          <p className="font-medium mt-6 text-gray-700">Skills</p>
+          <div className="mt-2 flex flex-wrap">
+            {skills.map((item) => {
+              return (
+                <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs">
+                  {item}
+                </p>
+              );
+            })}
+          </div>{" "}
+          <p className="font-medium mt-6 text-gray-700">Languages</p>
+          <div className="mt-2 flex flex-wrap">
+            {languages.map((item) => {
+              return (
+                <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs">
+                  {item}
+                </p>
+              );
+            })}
+          </div>
         </div>
       </div>
     </div>
