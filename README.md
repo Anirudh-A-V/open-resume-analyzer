@@ -30,6 +30,6 @@ The frontend of the application is built using React. This is a privacy friendly
 ### Contributors
 
 <a href="https://github.com/Anirudh-A-V/open-resume-analyzer/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=Anirudh-A-V/open-resume-analyzer" />
+  <img src="https://contrib.rocks/image?repo=Anirudh-A-V/open-resume-analyzer"> </img>
 </a>
 
