@@ -188,29 +188,29 @@ function App() {
 		setLoading(false);
 	};
 
-	const filterData = (data) => {
-		let arr = [];
-		let flag = true;
-		data.forEach((item) => {
-			let size = Object.keys(item).length;
-			for (let i = 0; i < size - 2; i++) {
-				if (item[i] === "false") {
-					flag = false;
-					break;
-				}
-			}
-			if (flag) {
-				arr.push(
-					{
-						'name': item.name,
-						'email': item.email,
-					}
-				);
-			}
-		});
-		console.log(arr);
-		setUserData(arr);
-	};
+	// const filterData = (data) => {
+	// 	let arr = [];
+	// 	let flag = true;
+	// 	data.forEach((item) => {
+	// 		let size = Object.keys(item).length;
+	// 		for (let i = 0; i < size - 2; i++) {
+	// 			if (item[i] === "false") {
+	// 				flag = false;
+	// 				break;
+	// 			}
+	// 		}
+	// 		if (flag) {
+	// 			arr.push(
+	// 				{
+	// 					'name': item.name,
+	// 					'email': item.email,
+	// 				}
+	// 			);
+	// 		}
+	// 	});
+	// 	console.log(arr);
+	// 	setUserData(arr);
+	// };
 
 
 	return (
