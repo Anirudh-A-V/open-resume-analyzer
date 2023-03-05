@@ -1,3 +1,4 @@
+![joao-ferrao-4YzrcDNcRVg-unsplash](https://user-images.githubusercontent.com/76550448/222956996-23111943-b8c2-44ca-864e-ec22a801f676.jpg)
 # open-resume-analyser
 
 A tool to filter resumes based on desirable qualities, skills, keywords and more.
