@@ -2,10 +2,19 @@
 
 A tool to filter resumes based on desirable qualities, skills, keywords and more.
 
+## Problem
+Considering the heap of applications a company receives for an open position, there is a need for a tool that can skim through hundreds of profiles and shortlist the ones with relevant qualities.  Those tools are still prone to contextual dilemmas and need highly complex code to solve. There are privacy issues when personal data is stored by the tool. We aim to solve this by using AI that seamlessly scans through all profiles and ranks relevant ones based on provided traits, let it be keywords, skills or qualities.
+
 ## Description
 
 This is a complete web application that can be used to filter resumes and analyse them as per the parameters specified. It is built using Django and uses OpenAI's GPT-3 API to analyse your resume.
 The frontend of the application is built using React. This is a privacy friendly application as it does not store any of your data. It is completely open source and you can use it for free.
+
+## Project Timeline
+### DAY1
+<b>10:00 AM :</b> Project idea finalised.<br>
+<b>4:30 PM :</b> Basic frontend and google cloud API set up completed.<br>
+<b>10:30 PM :</b> Basic API ready for hosting.<br>
 
 ## How to contribute
 
