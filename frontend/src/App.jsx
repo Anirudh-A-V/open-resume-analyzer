@@ -16,7 +16,7 @@ function App() {
 	]);
 
 	const [loading, setLoading] = useState(true);
-	// const []
+	const [start, setStart] = useState(true);
 	const [candidates, setCandidates] = useState([]);
 
 	const add = (id) => {
@@ -123,6 +123,7 @@ function App() {
 	//   languages: [],
 	// });
 	const searchData = () => {
+		setStart(false);
 		let work = "";
 		if (selected.experience.length > 0) {
 			work = "The person has had experience of ";
@@ -310,15 +311,21 @@ function App() {
 									remove={remove}
 									data={{
 										name: item.name,
-										email: item.mail,
+										mail: item.mail,
 									}}
 								/>
 							);
 						})
 					) : (
-						<div className="p-5 w-full text-gray-500 py-20 items-center text-2xl justify-center flex col-span-4">
-							<p className="">Fetching Data...</p>
-						</div>
+						start ? (
+							<div className="p-5 w-full text-gray-500 py-20 items-center text-2xl justify-center flex col-span-4">
+								<p className="">Paste the Google Drive Folder Link Above & Set the parameters for the search.</p>
+							</div>
+						) : (
+							<div className="p-5 w-full text-gray-500 py-20 items-center text-2xl justify-center flex col-span-4">
+								<p className="">Fetching Data...</p>
+							</div>
+						)
 					)}
 				</div>
 				<div className="p-4 bg-opacity-20 flex flex-col mx-10 bg-[#D7DFDC] w-1/6">
