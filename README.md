@@ -1,18 +1,18 @@
 ![github-header-image](https://user-images.githubusercontent.com/76550448/222957953-ecc3511b-7f86-4ddf-889e-7cf6cfee5ead.png)
 
-# Open Resumate
+# Open Resumate 👨‍🎓
 
 A tool to filter resumes based on desirable qualities, skills, keywords and more.
 
-## Problem
+## Problem 🥲
 Considering the heap of applications a company receives for an open position, there is a need for a tool that can skim through hundreds of profiles and shortlist the ones with relevant qualities.  Those tools are still prone to contextual dilemmas and need highly complex code to solve. There are privacy issues when personal data is stored by the tool. We aim to solve this by using AI that seamlessly scans through all profiles and ranks relevant ones based on provided traits, let it be keywords, skills or qualities.
 
-## Description
+## Description 💬
 
 This is a complete web application that can be used to filter resumes and analyse them as per the parameters specified. It is built using Django and uses OpenAI's GPT-3 API to analyse your resume.
 The frontend of the application is built using React. This is a privacy friendly application as it does not store any of your data. It is completely open source and you can use it for free.
 
-## Project Timeline
+## Project Timeline 🕛
 - **What was the initial stage of the project ?** <br>
 Developed from scratch.<br>
 
@@ -24,7 +24,7 @@ Automated email to selected candidates is halfway implemented.
 
 DEMO LINK: https://drive.google.com/file/d/1XUldCizxDt1EOsCLo-5XVt_gHWZnIfW6/view?usp=sharing
 
-### How did you get there?
+### How did you get there? 
 #### DAY1
 <b>10:00 AM :</b> Project idea finalised.<br>
 <b>4:30 PM :</b> Basic frontend and google cloud API set up completed.<br>
@@ -60,7 +60,7 @@ DEMO LINK: https://drive.google.com/file/d/1XUldCizxDt1EOsCLo-5XVt_gHWZnIfW6/vie
 ## Screenshots
 ![image](https://user-images.githubusercontent.com/76550448/222957632-fb92ce42-9d93-4899-94d8-fd718a77d45b.png)
 
-### Contributors
+### Contributors 💖
 
 <a href="https://github.com/Anirudh-A-V/open-resume-analyzer/graphs/contributors">
   <img src="https://contrib.rocks/image?repo=Anirudh-A-V/open-resume-analyzer" />
