@@ -311,7 +311,8 @@ function App() {
       </div>
       <div className="flex flex-row mb-4 w-full justify-center">
         <div className=" h-full gap-2 w-4/6 grid grid-cols-3">
-          {loading ? (
+          {!loading && userdata && <p className="">No Data Available</p>}
+          {loading && userdata ? (
             userdata.map((item) => {
               return (
                 <Card
