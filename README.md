@@ -10,6 +10,12 @@ Considering the heap of applications a company receives for an open position, th
 This is a complete web application that can be used to filter resumes and analyse them as per the parameters specified. It is built using Django and uses OpenAI's GPT-3 API to analyse your resume.
 The frontend of the application is built using React. This is a privacy friendly application as it does not store any of your data. It is completely open source and you can use it for free.
 
+## Project Timeline
+### DAY1
+<b>10:00 AM :</b> Project idea finalised.<br>
+<b>4:30 PM :</b> Basic frontend and google cloud API set up completed.<br>
+<b>10:30 PM :</b> Basic API ready for hosting.<br>
+
 ## How to contribute
 
 1. Clone the repository and leave a star 😉
