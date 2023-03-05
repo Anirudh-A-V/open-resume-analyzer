@@ -32,7 +32,7 @@ Project hosted live with all basic functionalties implemented. <br>Link: http://
 - **What is working/not working?**<br>
 Automated email to selected candidates is halfway implemented. 
 
-
+DEMO LINK: https://drive.google.com/file/d/1XUldCizxDt1EOsCLo-5XVt_gHWZnIfW6/view?usp=sharing
 
 ## How to contribute
 
