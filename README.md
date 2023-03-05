@@ -3,7 +3,7 @@
 A tool to filter resumes based on desirable qualities, skills, keywords and more.
 
 ## Problem
-Considering the heap of applications a company receives for an open position, there is a need for a tool that can skim through hundreds of profiles and shortlist the ones with relevant qualities. Those tools are still prone to contextual dilemmas and need highly complex code to solve. There also exist privacy issues when personal data is stored by the tool. We aim to solve this by using AI that seamlessly goes thorugh all profiles and selects relevant ones based on provided 
+Considering the heap of applications a company receives for an open position, there is a need for a tool that can skim through hundreds of profiles and shortlist the ones with relevant qualities.  Those tools are still prone to contextual dilemmas and need highly complex code to solve. There are privacy issues when personal data is stored by the tool. We aim to solve this by using AI that seamlessly scans through all profiles and ranks relevant ones based on provided traits, let it be keywords, skills or qualities.
 
 ## Description
 
