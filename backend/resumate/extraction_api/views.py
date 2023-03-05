@@ -131,7 +131,6 @@ def postText(request):
         start_sequence = "\nA:"
         restart_sequence = "\n\nQ: "
 
-        # print("Consider the following text enclosed within double quotes: \"{text}\".This is the resume of a person applying for a job. Please see from the resume if the following conditions are met:\n1. The person has had undergraduate education in CET\n2. The person has done projects in React.\n3. The person has work experience using django.\n4. The person has work experience using tensorflow.\n5. The person has served some sort of leadership roles.\nNow return a json file for the each of the above requirements with key as the question number and value as True or False depending on the query.".format(text=txt))
         # prompt= "Consider the following text enclosed within double quotes: \""+txt+"\".This is the resume of a person applying for a job. Please see from the resume if the following conditions are met:\n"+p
         print(f"Consider the following text enclosed within double quotes: \"{txt}\".This is the resume of a person applying for a job. Please see from the resume if the following conditions are met:\n{p}")
         # print("Consider the following text enclosed within double quotes: \""+txt+"\".This is the resume of a person applying for a job. Please see from the resume if the following conditions are met:\n"+str(p))
