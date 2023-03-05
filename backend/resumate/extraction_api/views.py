@@ -109,7 +109,6 @@ def postText(request):
     filename = 'resumate-extraction-RESTapi/extraction_api/Resume_temp'
     id = request.data.get("url")
     p = request.data.get("prompt")
-    # p = request.prompt
 
     dict = {'url': id, 'prompt': p}
     d = Downloader()
