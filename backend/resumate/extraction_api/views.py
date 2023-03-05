@@ -131,7 +131,6 @@ def postText(request):
         start_sequence = "\nA:"
         restart_sequence = "\n\nQ: "
 
-        # prompt= "Consider the following text enclosed within double quotes: \""+txt+"\".This is the resume of a person applying for a job. Please see from the resume if the following conditions are met:\n"+p
         print(f"Consider the following text enclosed within double quotes: \"{txt}\".This is the resume of a person applying for a job. Please see from the resume if the following conditions are met:\n{p}")
         # print("Consider the following text enclosed within double quotes: \""+txt+"\".This is the resume of a person applying for a job. Please see from the resume if the following conditions are met:\n"+str(p))
 
