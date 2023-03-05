@@ -9,14 +9,10 @@ function App() {
 	const skills = ["React", "Next.js", "Node.js", "Figma"];
 	const languages = ["Hindi", "English", "Malayalam"];
 
-	const [userdata, setUserData] = useState([
-		{ name: "Don Jose Mathew", mail: "Examplez@example.com" },
-		{ name: "Anirudh", mail: "Examplez@example.com" },
-		{ name: "Adarsh M", mail: "Examplez@example.com" },
-	]);
+	const [userdata, setUserData] = useState([]);
 
-	const [loading, setLoading] = useState(true);
-	const [start, setStart] = useState(true);
+	const [loading, setLoading] = useState(false);
+	// const []
 	const [candidates, setCandidates] = useState([]);
 
 	const add = (id) => {
@@ -123,7 +119,6 @@ function App() {
 	//   languages: [],
 	// });
 	const searchData = () => {
-		setStart(false);
 		let work = "";
 		if (selected.experience.length > 0) {
 			work = "The person has had experience of ";
@@ -165,6 +160,7 @@ function App() {
 	};
 
 	const postData = (promt) => {
+		setLoading(true);
 		const url = URL;
 		const split = url.split("/");
 		const code = split[split.length - 1].split("?")[0];
@@ -178,7 +174,7 @@ function App() {
 			url: "https://ashishanton.pythonanywhere.com/post",
 			data: query,
 		}).then((e) => {
-			let arr = []
+			let arr = [];
 			// console.log(e.data[0]);
 			for (let i = 0; i < Object.keys(e.data).length; i++) {
 				console.log(e.data[i]);
@@ -186,8 +182,8 @@ function App() {
 			}
 			arr = parseObject(arr);
 			filterData(arr);
-			console.log('Parsed Data')
-			console.log(arr)
+			console.log("Parsed Data");
+			console.log(arr);
 		});
 	};
 
@@ -196,7 +192,7 @@ function App() {
 		data.forEach((item) => {
 			if (item) {
 				let str = item;
-				console.log(str)
+				console.log(str);
 				let obj = {};
 				// remove '\n' from the string
 				str = str.replace(/\\n/g, "");
@@ -213,7 +209,6 @@ function App() {
 		});
 		return arr;
 	};
-
 
 	const filterData = (data) => {
 		let arr = [];
@@ -234,20 +229,17 @@ function App() {
 			});
 
 			if (flag) {
-				arr.push(
-					{
-						'name': item.name,
-						'email': item.email,
-					}
-				);
+				arr.push({
+					name: item.name,
+					email: item.email,
+				});
 			}
 		});
-		console.log('Filtered Data');
+		console.log("Filtered Data");
 		console.log(arr);
 		setUserData(arr);
 		setLoading(false);
 	};
-
 
 	return (
 		<div className="relative">
@@ -302,8 +294,13 @@ function App() {
 			</div>
 			<div className="flex flex-row mb-4 w-full justify-center">
 				<div className=" h-full gap-2 w-4/6 grid grid-cols-3">
-					{!loading ? (
-						userdata.map((item) => {
+					{loading && (
+						<div className="p-5 w-full text-gray-500 py-20 items-center text-2xl justify-center flex col-span-4">
+							<p className="">Fetching Data...</p>
+						</div>
+					)}
+					{!loading && userdata
+						? userdata.map((item) => {
 							return (
 								<Card
 									selected={candidates}
@@ -311,22 +308,12 @@ function App() {
 									remove={remove}
 									data={{
 										name: item.name,
-										mail: item.mail,
+										email: item.mail,
 									}}
 								/>
 							);
 						})
-					) : (
-						start ? (
-							<div className="p-5 w-full text-gray-500 py-20 items-center text-2xl justify-center flex col-span-4">
-								<p className="">Paste the Google Drive Folder Link Above & Set the parameters for the search.</p>
-							</div>
-						) : (
-							<div className="p-5 w-full text-gray-500 py-20 items-center text-2xl justify-center flex col-span-4">
-								<p className="">Fetching Data...</p>
-							</div>
-						)
-					)}
+						: ""}
 				</div>
 				<div className="p-4 bg-opacity-20 flex flex-col mx-10 bg-[#D7DFDC] w-1/6">
 					<p className="font-medium text-gray-700">Work Experience</p>
