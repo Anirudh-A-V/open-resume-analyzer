@@ -10,12 +10,13 @@ function App() {
 	const languages = ["Hindi", "English", "Malayalam"];
 
 	const [userdata, setUserData] = useState([
-		{ name: "Don Jose Mathew", mail: "Examplez@example.com"},
-		{ name: "Anirudh", mail: "Examplez@example.com"},
-		{ name: "Adarsh M", mail: "Examplez@example.com"},
+		{ name: "Don Jose Mathew", mail: "Examplez@example.com" },
+		{ name: "Anirudh", mail: "Examplez@example.com" },
+		{ name: "Adarsh M", mail: "Examplez@example.com" },
 	]);
-	
+
 	const [loading, setLoading] = useState(true);
+	// const []
 	const [candidates, setCandidates] = useState([]);
 
 	const add = (id) => {
@@ -192,19 +193,22 @@ function App() {
 	const parseObject = (data) => {
 		let arr = [];
 		data.forEach((item) => {
-			let str = item;
-			let obj = {};
-			// remove '\n' from the string
-			str = str.replace(/\\n/g, "");
-			// remove '\' from the string
-			str = str.replace(/\\/g, "");
-			// replace 'False' with false
-			str = str.replace(/False/g, "false");
-			// replace 'True' with true
-			str = str.replace(/True/g, "true");
+			if (item) {
+				let str = item;
+				console.log(str)
+				let obj = {};
+				// remove '\n' from the string
+				str = str.replace(/\\n/g, "");
+				// remove '\' from the string
+				str = str.replace(/\\/g, "");
+				// replace 'False' with false
+				str = str.replace(/False/g, "false");
+				// replace 'True' with true
+				str = str.replace(/True/g, "true");
 
-			obj = JSON.parse(str);
-			arr.push(obj);
+				obj = JSON.parse(str);
+				arr.push(obj);
+			}
 		});
 		return arr;
 	};
@@ -214,20 +218,20 @@ function App() {
 		let arr = [];
 		let flag = true;
 		data.forEach((item) => {
-			console.log(item, "item"); 
+			console.log(item, "item");
 			// if (item.includes("name") && item.includes("email")) {
 			// 	flag = false;
 			// }
-			const keys= Object.keys(item);
-			keys.forEach((key)=>{
+			const keys = Object.keys(item);
+			keys.forEach((key) => {
 				console.log(item[key], "key");
-				if(!key.includes("name") && !key.includes("email")){
-					if(!item[key]){
+				if (!key.includes("name") && !key.includes("email")) {
+					if (!item[key]) {
 						flag = false;
 					}
 				}
 			});
-			
+
 			if (flag) {
 				arr.push(
 					{
