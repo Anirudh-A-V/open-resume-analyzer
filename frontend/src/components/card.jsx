@@ -2,12 +2,12 @@ import React from "react";
 import { CiCircleRemove } from "react-icons/ci";
 import { AiOutlineUserAdd } from "react-icons/ai";
 function Card({ data, add, remove, selected }) {
-  const { name, mail, uid } = data;
+  const { name, mail } = data;
   return (
     <div>
       <div
         className={`bg-gray-100    relative rounded-md border-2 p-4 m-3 ${
-          selected.includes(uid)
+          selected.includes(mail)
             ? "border-2 border-emerald-300 shadow-lg shadow-emerald-300/10 "
             : "border-2 border-gray-100 "
         }`}
@@ -18,10 +18,10 @@ function Card({ data, add, remove, selected }) {
         <button className="bg-[#D7DFDC] mt-3 text-sm font-medium text-gray-800 p-1 px-5 rounded-full">
           Get Full Details
         </button>
-        {!selected.includes(uid) ? (
+        {!selected.includes(mail) ? (
           <AiOutlineUserAdd
             onClick={() => {
-              add(uid);
+              add(mail);
             }}
             size={"1.2rem"}
             className="text-gray-500 cursor-pointer mt-3"
@@ -29,7 +29,7 @@ function Card({ data, add, remove, selected }) {
         ) : (
           <CiCircleRemove
             onClick={() => {
-              remove(uid);
+              remove(mail);
             }}
             size={"1.3rem"}
             className="text-red-500 cursor-pointer mt-3"
