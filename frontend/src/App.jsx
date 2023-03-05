@@ -14,7 +14,8 @@ function App() {
 		{ name: "Anirudh", mail: "Examplez@example.com"},
 		{ name: "Adarsh M", mail: "Examplez@example.com"},
 	]);
-
+	
+	const [loading, setLoading] = useState(true);
 	const [candidates, setCandidates] = useState([]);
 
 	const add = (id) => {
@@ -109,7 +110,6 @@ function App() {
 
 		// console.log();
 	};
-	const [loading, setLoading] = useState(false);
 	//getData();
 	//
 	const [URL, setURL] = useState("");
@@ -182,35 +182,66 @@ function App() {
 				console.log(e.data[i]);
 				arr.push(e.data[i]);
 			}
+			arr = parseObject(arr);
 			filterData(arr);
+			console.log('Parsed Data')
 			console.log(arr)
 		});
-		setLoading(false);
 	};
 
-	// const filterData = (data) => {
-	// 	let arr = [];
-	// 	let flag = true;
-	// 	data.forEach((item) => {
-	// 		let size = Object.keys(item).length;
-	// 		for (let i = 0; i < size - 2; i++) {
-	// 			if (item[i] === "false") {
-	// 				flag = false;
-	// 				break;
-	// 			}
-	// 		}
-	// 		if (flag) {
-	// 			arr.push(
-	// 				{
-	// 					'name': item.name,
-	// 					'email': item.email,
-	// 				}
-	// 			);
-	// 		}
-	// 	});
-	// 	console.log(arr);
-	// 	setUserData(arr);
-	// };
+	const parseObject = (data) => {
+		let arr = [];
+		data.forEach((item) => {
+			let str = item;
+			let obj = {};
+			// remove '\n' from the string
+			str = str.replace(/\\n/g, "");
+			// remove '\' from the string
+			str = str.replace(/\\/g, "");
+			// replace 'False' with false
+			str = str.replace(/False/g, "false");
+			// replace 'True' with true
+			str = str.replace(/True/g, "true");
+
+			obj = JSON.parse(str);
+			arr.push(obj);
+		});
+		return arr;
+	};
+
+
+	const filterData = (data) => {
+		let arr = [];
+		let flag = true;
+		data.forEach((item) => {
+			console.log(item, "item"); 
+			// if (item.includes("name") && item.includes("email")) {
+			// 	flag = false;
+			// }
+			const keys= Object.keys(item);
+			keys.forEach((key)=>{
+				console.log(item[key], "key");
+				if(!key.includes("name") && !key.includes("email")){
+					if(!item[key]){
+						flag = false;
+					}
+				}
+			});
+			
+			if (flag) {
+				arr.push(
+					{
+						'name': item.name,
+						'email': item.email,
+					}
+				);
+			}
+		});
+		console.log('Filtered Data');
+		console.log(arr);
+		setUserData(arr);
+		setLoading(false);
+	};
 
 
 	return (
@@ -266,7 +297,7 @@ function App() {
 			</div>
 			<div className="flex flex-row mb-4 w-full justify-center">
 				<div className=" h-full gap-2 w-4/6 grid grid-cols-3">
-					{loading ? (
+					{!loading ? (
 						userdata.map((item) => {
 							return (
 								<Card
