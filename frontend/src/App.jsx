@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
+import { BsCloudDownloadFill } from "react-icons/bs";
 import Card from "./components/card";
 
 function App() {
@@ -15,8 +16,11 @@ function App() {
 
   const [candidates, setCandidates] = useState([]);
 
-  const add = (id) => {
-    setCandidates([...candidates, id]);
+  const add = async (mail) => {
+    const ar = [...candidates, mail];
+    console.log(ar, mail, "Sds");
+    await setCandidates(ar);
+    console.log(candidates, "Sd");
   };
 
   const remove = (id) => {
@@ -247,6 +251,35 @@ function App() {
     setLoading(false);
   };
 
+  function download(filename, text) {
+    var element = document.createElement("a");
+    element.setAttribute(
+      "href",
+      "data:text/plain;charset=utf-8," + encodeURIComponent(text)
+    );
+    element.setAttribute("download", filename);
+
+    element.style.display = "none";
+    document.body.appendChild(element);
+
+    element.click();
+
+    document.body.removeChild(element);
+  }
+
+  // Start file download.
+
+  const downloadCode = () => {
+    let fileString = "";
+    console.log(candidates);
+    candidates.forEach((item, i) => {
+      fileString += item;
+      if (i != candidates.length) {
+        fileString += ",";
+      }
+    });
+    download("mail.txt", fileString);
+  };
   return (
     <div className="relative">
       <div className="bg-[#D7DFDC] p-8 px-20 relative">
@@ -289,13 +322,22 @@ function App() {
             DevOps Developer
           </p>
         </div>
-        <div className="">
-          <p className="p-1 font-medium flex flex-row text-emerald-500">
+        <div className="flex flex-row items-center">
+          <p className="p-1 font-medium items-center flex flex-row text-emerald-500">
             Selected Candidates{" "}
-            <div className="bg-emerald-500 ml-2 text-white flex items-center justify-center w-6 h-6 rounded-full ">
-              {candidates.length}
-            </div>
-          </p>
+          </p>{" "}
+          <div className="bg-emerald-500 ml-2 text-white flex items-center justify-center w-6 h-6 rounded-full ">
+            {candidates.length}
+          </div>
+          <p className="p-1 text-gray-600 ml-5 font-medium items-center flex flex-row text-emerald-500">
+            Download Emails
+          </p>{" "}
+          <div
+            onClick={downloadCode}
+            className="bg-emerald-500 bg-gray-600  ml-2 text-white flex items-center justify-center w-6 h-6 rounded-full "
+          >
+            <BsCloudDownloadFill />
+          </div>
         </div>
       </div>
       <div className="flex flex-row mb-4 w-full justify-center">
@@ -320,7 +362,7 @@ function App() {
                     remove={remove}
                     data={{
                       name: item.name,
-                      email: item.mail,
+                      email: item.email,
                     }}
                   />
                 );
