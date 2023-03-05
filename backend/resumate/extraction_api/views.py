@@ -155,6 +155,10 @@ def postText(request):
         #export_pdf(real_file_id='1fNQmqfep--OjgmBXmgPEI4VedzyJaDGJ')
     # print(response.choices[0].text)
     # return Response(jsonify(infos))
+    
+    for file in files:
+        os.remove(file)
+        
     return JsonResponse(infos)
 
 # # Response(response.choices.text)
