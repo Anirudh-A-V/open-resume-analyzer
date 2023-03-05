@@ -4,10 +4,10 @@ import { FaCloudUploadAlt } from "react-icons/fa";
 import Card from "./components/card";
 
 function App() {
-	const experiences = ["1", "2", "3", "4", "5+"];
-	const institute = ["IIT", "NIT", "Kerala University", "CUCET"];
-	const skills = ["React", "Next.js", "Node.js", "Figma"];
-	const languages = ["Hindi", "English", "Malayalam"];
+  const experiences = ["1", "2", "3", "4", "5+"];
+  const institute = ["IIT", "NIT", "Kerala University", "CUCET"];
+  const skills = ["React", "Next.js", "Node.js", "Figma"];
+  const languages = ["Hindi", "English", "Malayalam"];
 
 	const [userdata, setUserData] = useState([]);
 
@@ -15,101 +15,101 @@ function App() {
 	// const []
 	const [candidates, setCandidates] = useState([]);
 
-	const add = (id) => {
-		setCandidates([...candidates, id]);
-	};
+  const add = (id) => {
+    setCandidates([...candidates, id]);
+  };
 
-	const remove = (id) => {
-		const removed = candidates.filter((item) => {
-			return item != id;
-		});
-		setCandidates([...removed]);
-	};
+  const remove = (id) => {
+    const removed = candidates.filter((item) => {
+      return item != id;
+    });
+    setCandidates([...removed]);
+  };
 
-	const [selected, setSelected] = useState({
-		experience: [],
-		institute: [],
-		skills: [],
-		languages: [],
-	});
+  const [selected, setSelected] = useState({
+    experience: [],
+    institute: [],
+    skills: [],
+    languages: [],
+  });
 
-	// Options Handling
+  // Options Handling
 
-	const handleExperience = (item) => {
-		if (selected.experience.includes(item)) {
-			setSelected({
-				...selected,
-				experience: selected.experience.filter((element) => element !== item),
-			});
-		} else {
-			setSelected({
-				...selected,
-				experience: [...selected.experience, item],
-			});
-		}
-		console.log(selected);
-	};
+  const handleExperience = (item) => {
+    if (selected.experience.includes(item)) {
+      setSelected({
+        ...selected,
+        experience: selected.experience.filter((element) => element !== item),
+      });
+    } else {
+      setSelected({
+        ...selected,
+        experience: [...selected.experience, item],
+      });
+    }
+    console.log(selected);
+  };
 
-	const handleInstitute = (item) => {
-		if (selected.institute.includes(item)) {
-			setSelected({
-				...selected,
-				institute: selected.institute.filter((element) => element !== item),
-			});
-		} else {
-			setSelected({
-				...selected,
-				institute: [...selected.institute, item],
-			});
-		}
-		console.log(selected);
-	};
+  const handleInstitute = (item) => {
+    if (selected.institute.includes(item)) {
+      setSelected({
+        ...selected,
+        institute: selected.institute.filter((element) => element !== item),
+      });
+    } else {
+      setSelected({
+        ...selected,
+        institute: [...selected.institute, item],
+      });
+    }
+    console.log(selected);
+  };
 
-	const handleSkills = (item) => {
-		console.log(item.target);
-		if (selected.skills.includes(item)) {
-			setSelected({
-				...selected,
-				skills: selected.skills.filter((element) => element !== item),
-			});
-		} else {
-			setSelected({
-				...selected,
-				skills: [...selected.skills, item],
-			});
-		}
-		console.log(selected);
-	};
+  const handleSkills = (item) => {
+    console.log(item.target);
+    if (selected.skills.includes(item)) {
+      setSelected({
+        ...selected,
+        skills: selected.skills.filter((element) => element !== item),
+      });
+    } else {
+      setSelected({
+        ...selected,
+        skills: [...selected.skills, item],
+      });
+    }
+    console.log(selected);
+  };
 
-	const handleLanguages = (item) => {
-		if (selected.languages.includes(item)) {
-			setSelected({
-				...selected,
-				languages: selected.languages.filter((element) => element !== item),
-			});
-		} else {
-			setSelected({
-				...selected,
-				languages: [...selected.languages, item],
-			});
-		}
-		console.log(selected);
-	};
+  const handleLanguages = (item) => {
+    if (selected.languages.includes(item)) {
+      setSelected({
+        ...selected,
+        languages: selected.languages.filter((element) => element !== item),
+      });
+    } else {
+      setSelected({
+        ...selected,
+        languages: [...selected.languages, item],
+      });
+    }
+    console.log(selected);
+  };
 
-	const getData = async () => {
-		console.log("Loading");
-		fetch("https://ashishanton.pythonanywhere.com/")
-			.then((response) => response.json())
-			.then((data) => {
-				console.log(data);
-				setLoading(true);
-			});
+  const getData = async () => {
+    console.log("Loading");
+    fetch("https://ashishanton.pythonanywhere.com/")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setLoading(true);
+      });
 
-		// console.log();
-	};
-	//getData();
-	//
-	const [URL, setURL] = useState("");
+    // console.log();
+  };
+  //getData();
+  //
+  const [URL, setURL] = useState("");
 
 	//console.log(code);
 	// const [selected, setSelected] = useState({
@@ -135,29 +135,29 @@ function App() {
 			institue += "\n ";
 		}
 
-		let skill = "";
-		console.log(selected.skills);
-		if (selected.skills.length > 0) {
-			skill = "The person has work experience in ";
-			selected.skills.forEach((item) => (skill += item + " and "));
-			skill += "\n ";
-		}
+    let skill = "";
+    console.log(selected.skills);
+    if (selected.skills.length > 0) {
+      skill = "The person has work experience in ";
+      selected.skills.forEach((item) => (skill += item + " and "));
+      skill += "\n ";
+    }
 
-		let languages = "";
-		if (selected.languages.length > 0) {
-			languages = "The person who understand languages ";
-			selected.languages.forEach((item) => (languages += item + " and "));
-			languages += "\n ";
-		}
-		let stringd = "";
-		let k = 0;
-		[work, institue, skill, languages].forEach((item, i) => {
-			if (item) {
-				stringd += `${++k}.` + item;
-			}
-		});
-		postData(stringd);
-	};
+    let languages = "";
+    if (selected.languages.length > 0) {
+      languages = "The person who understand languages ";
+      selected.languages.forEach((item) => (languages += item + " and "));
+      languages += "\n ";
+    }
+    let stringd = "";
+    let k = 0;
+    [work, institue, skill, languages].forEach((item, i) => {
+      if (item) {
+        stringd += `${++k}.` + item;
+      }
+    });
+    postData(stringd);
+  };
 
 	const postData = (promt) => {
 		setLoading(true);
@@ -203,12 +203,12 @@ function App() {
 				// replace 'True' with true
 				str = str.replace(/True/g, "true");
 
-				obj = JSON.parse(str);
-				arr.push(obj);
-			}
-		});
-		return arr;
-	};
+        obj = JSON.parse(str);
+        arr.push(obj);
+      }
+    });
+    return arr;
+  };
 
 	const filterData = (data) => {
 		let arr = [];
