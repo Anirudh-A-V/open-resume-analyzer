@@ -23,6 +23,7 @@ class Downloader:
 
         self.SCOPES = ['https://www.googleapis.com/auth/drive']
         print("\n\nDir-", os.listdir(), '\n')
+        
         # Authenticate and build the Drive API client
         self.creds = None
         if os.path.exists('resumate-extraction-RESTapi/extraction_api/token.json'):
@@ -108,7 +109,6 @@ def postText(request):
     filename = 'resumate-extraction-RESTapi/extraction_api/Resume_temp'
     id = request.data.get("url")
     p = request.data.get("prompt")
-    # id = request.url
     # p = request.prompt
 
     dict = {'url': id, 'prompt': p}
