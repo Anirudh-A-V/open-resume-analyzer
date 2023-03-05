@@ -12,6 +12,7 @@ function App() {
   const [userdata, setUserData] = useState([]);
 
   const [loading, setLoading] = useState(false);
+  // const []
   const [candidates, setCandidates] = useState([]);
 
   const add = (id) => {
@@ -159,6 +160,7 @@ function App() {
   };
 
   const postData = (promt) => {
+    setLoading(true);
     const url = URL;
     const split = url.split("/");
     const code = split[split.length - 1].split("?")[0];
@@ -188,19 +190,22 @@ function App() {
   const parseObject = (data) => {
     let arr = [];
     data.forEach((item) => {
-      let str = item;
-      let obj = {};
-      // remove '\n' from the string
-      str = str.replace(/\\n/g, "");
-      // remove '\' from the string
-      str = str.replace(/\\/g, "");
-      // replace 'False' with false
-      str = str.replace(/False/g, "false");
-      // replace 'True' with true
-      str = str.replace(/True/g, "true");
+      if (item) {
+        let str = item;
+        console.log(str);
+        let obj = {};
+        // remove '\n' from the string
+        str = str.replace(/\\n/g, "");
+        // remove '\' from the string
+        str = str.replace(/\\/g, "");
+        // replace 'False' with false
+        str = str.replace(/False/g, "false");
+        // replace 'True' with true
+        str = str.replace(/True/g, "true");
 
-      obj = JSON.parse(str);
-      arr.push(obj);
+        obj = JSON.parse(str);
+        arr.push(obj);
+      }
     });
     return arr;
   };
@@ -289,25 +294,26 @@ function App() {
       </div>
       <div className="flex flex-row mb-4 w-full justify-center">
         <div className=" h-full gap-2 w-4/6 grid grid-cols-3">
-          {!loading ? (
-            userdata.map((item) => {
-              return (
-                <Card
-                  selected={candidates}
-                  add={add}
-                  remove={remove}
-                  data={{
-                    name: item.name,
-                    email: item.mail,
-                  }}
-                />
-              );
-            })
-          ) : (
+          {loading && (
             <div className="p-5 w-full text-gray-500 py-20 items-center text-2xl justify-center flex col-span-4">
               <p className="">Fetching Data...</p>
             </div>
           )}
+          {!loading && userdata
+            ? userdata.map((item) => {
+                return (
+                  <Card
+                    selected={candidates}
+                    add={add}
+                    remove={remove}
+                    data={{
+                      name: item.name,
+                      email: item.mail,
+                    }}
+                  />
+                );
+              })
+            : ""}
         </div>
         <div className="p-4 bg-opacity-20 flex flex-col mx-10 bg-[#D7DFDC] w-1/6">
           <p className="font-medium text-gray-700">Work Experience</p>
