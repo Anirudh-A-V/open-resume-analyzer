@@ -1,4 +1,5 @@
-![joao-ferrao-4YzrcDNcRVg-unsplash](https://user-images.githubusercontent.com/76550448/222956996-23111943-b8c2-44ca-864e-ec22a801f676.jpg)
+![github-header-image](https://user-images.githubusercontent.com/76550448/222957953-ecc3511b-7f86-4ddf-889e-7cf6cfee5ead.png)
+
 # Open Resumate
 
 A tool to filter resumes based on desirable qualities, skills, keywords and more.
