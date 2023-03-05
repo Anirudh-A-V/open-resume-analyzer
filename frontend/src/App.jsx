@@ -9,12 +9,9 @@ function App() {
   const skills = ["React", "Next.js", "Node.js", "Figma"];
   const languages = ["Hindi", "English", "Malayalam"];
 
-  const [userdata, setUserData] = useState([
-    { name: "Don Jose Mathew", mail: "Examplez@example.com" },
-    { name: "Anirudh", mail: "Examplez@example.com" },
-    { name: "Adarsh M", mail: "Examplez@example.com" },
-  ]);
+  const [userdata, setUserData] = useState([]);
 
+  const [loading, setLoading] = useState(false);
   const [candidates, setCandidates] = useState([]);
 
   const add = (id) => {
@@ -109,7 +106,6 @@ function App() {
 
     // console.log();
   };
-  const [loading, setLoading] = useState(false);
   //getData();
   //
   const [URL, setURL] = useState("");
@@ -178,75 +174,55 @@ function App() {
     }).then((e) => {
       let arr = [];
       // console.log(e.data[0]);
-
       for (let i = 0; i < Object.keys(e.data).length; i++) {
-        console.log(e.data[i], "Data Inner");
+        console.log(e.data[i]);
         arr.push(e.data[i]);
       }
+      arr = parseObject(arr);
       filterData(arr);
-
-      console.log(
-        arr[0].replaceAll("\n", "").replaceAll("\\", "").split(","),
-        "sd"
-      );
-      let logic = true;
-      let userInclude = [];
-      arr.forEach((item) => {
-        const out1 = item
-          .replaceAll("\n", "")
-          .replaceAll("'", "")
-          .replaceAll("\\", "")
-          .split(",")
-          .map((item) => {
-            let individual = {};
-            if (item.includes("name")) {
-              individual["name"] = item
-                .split(":")[1]
-                .replaceAll("'", "")
-                .replaceAll('"', "");
-              console.log(individual["name"]);
-            }
-            if (item.includes("email")) {
-              individual["email"] = item
-                .split(":")[1]
-                .replaceAll("'", "")
-                .replaceAll('"', "")
-                .trim();
-              console.log(individual["email"]);
-            }
-            if (
-              !item.includes("true") &&
-              !item.includes("name") &&
-              !item.includes("email")
-            ) {
-              logic = false;
-            } else {
-              console.log("not included");
-            }
-          });
-      });
-
-      let i;
-      for (i = 0; i < outerHeight.length - 2; i++) {
-        let innet = out1.spilt(":");
-        if (true) {
-        }
-      }
+      console.log("Parsed Data");
+      console.log(arr);
     });
-    setLoading(false);
+  };
+
+  const parseObject = (data) => {
+    let arr = [];
+    data.forEach((item) => {
+      let str = item;
+      let obj = {};
+      // remove '\n' from the string
+      str = str.replace(/\\n/g, "");
+      // remove '\' from the string
+      str = str.replace(/\\/g, "");
+      // replace 'False' with false
+      str = str.replace(/False/g, "false");
+      // replace 'True' with true
+      str = str.replace(/True/g, "true");
+
+      obj = JSON.parse(str);
+      arr.push(obj);
+    });
+    return arr;
   };
 
   const filterData = (data) => {
     let arr = [];
     let flag = true;
     data.forEach((item) => {
-      let size = Object.keys(item).length;
-      for (let i = 0; i < size - 2; i++) {
-        if (item[i] === "false") {
-          flag = false;
-          break;
+      console.log(item, "item");
+      // if (item.includes("name") && item.includes("email")) {
+      // 	flag = false;
+      // }
+      const keys = Object.keys(item);
+      keys.forEach((key) => {
+        console.log(item[key], "key");
+        if (!key.includes("name") && !key.includes("email")) {
+          if (!item[key]) {
+            flag = false;
+          }
         }
-      }
+      });
+
       if (flag) {
         arr.push({
           name: item.name,
@@ -254,8 +230,10 @@ function App() {
         });
       }
     });
-
+    console.log("Filtered Data");
+    console.log(arr);
     setUserData(arr);
+    setLoading(false);
   };
 
   return (
@@ -311,8 +289,7 @@ function App() {
       </div>
       <div className="flex flex-row mb-4 w-full justify-center">
         <div className=" h-full gap-2 w-4/6 grid grid-cols-3">
-          {!loading && userdata && <p className="">No Data Available</p>}
-          {loading && userdata ? (
+          {!loading ? (
             userdata.map((item) => {
               return (
                 <Card

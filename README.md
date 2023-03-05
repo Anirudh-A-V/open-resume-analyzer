@@ -1,10 +1,10 @@
 # open-resume-analyser
 
-A tool to filter resumes based on keywords.
+A tool to filter resumes based on desirable qualities, skills, keywords and more.
 
 ## Description
 
-This is a complete web application that can be used to filter resumes and analyse them as per the parameters specified. It is built using Django and uses openai's GPT-3 to analyse your resume.
+This is a complete web application that can be used to filter resumes and analyse them as per the parameters specified. It is built using Django and uses OpenAI's GPT-3 API to analyse your resume.
 The frontend of the application is built using React. This is a privacy friendly application as it does not store any of your data. It is completely open source and you can use it for free.
 
 ## How to contribute
