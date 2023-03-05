@@ -18,21 +18,23 @@ Developed from scratch.<br>
 - **What stage is it in now?**<br>
 Project hosted live with all basic functionalties implemented. <br>Link: http://open-resume-analyzer.vercel.app/<br>
 
-- **How did you get there?**
-### DAY1
-<b>10:00 AM :</b> Project idea finalised.<br>
-<b>4:30 PM :</b> Basic frontend and google cloud API set up completed.<br>
-<b>10:30 PM :</b> Basic API ready for hosting.<br>
-
-### DAY2
-<b>01:00 AM :</b> Backend API live.<br>
-<b>10:30 AM :</b> Frontend finalised.<br>
-<b>3:30 PM :</b> Project hosted and live.<br>
-
 - **What is working/not working?**<br>
 Automated email to selected candidates is halfway implemented. 
 
 DEMO LINK: https://drive.google.com/file/d/1XUldCizxDt1EOsCLo-5XVt_gHWZnIfW6/view?usp=sharing
+
+### How did you get there?
+#### DAY1
+<b>10:00 AM :</b> Project idea finalised.<br>
+<b>4:30 PM :</b> Basic frontend and google cloud API set up completed.<br>
+<b>10:30 PM :</b> Basic API ready for hosting.<br>
+
+#### DAY2
+<b>01:00 AM :</b> Backend API live.<br>
+<b>10:30 AM :</b> Frontend finalised.<br>
+<b>3:30 PM :</b> Project hosted and live.<br>
+
+
 
 ## How to contribute
 
