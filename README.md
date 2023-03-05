@@ -27,4 +27,9 @@ The frontend of the application is built using React. This is a privacy friendly
 4. Then click on the `Submit` button.
 5. The application will start to filter the resumes based on the parameters you have selected.
 
-### Creating a cloud app
+### Contributors
+
+<a href="https://github.com/Anirudh-A-V/open-resume-analyzer/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Anirudh-A-V/open-resume-analyzer" />
+</a>
+
