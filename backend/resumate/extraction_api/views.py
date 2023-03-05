@@ -51,7 +51,7 @@ class Downloader:
             # pylint: disable=maybe-no-member
             request = self.service.files().get_media(fileId=file_id)
             i=0
-            # filename = os.path.join(loc,'resume_' + str(i) + '.pdf')
+
             filename = os.path.join(loc, name)
 
             file = io.FileIO(filename, 'wb')
