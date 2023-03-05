@@ -134,7 +134,6 @@ def postText(request):
         response = openai.Completion.create(
         model= "text-davinci-003",
         prompt=f"Consider the following text enclosed within double quotes: \"{txt}\".This is the resume of a person applying for a job. Please see from the resume if the following conditions are met:\n{p}\nNow return a json file for the each of the above requirements with key as the question number and value as True or False depending on the query with the person's email id and name also in the json file.",
-        # print(f"Consider the following text enclosed within double quotes: \"{txt}\".This is the resume of a person applying for a job. Please see from the resume if the following conditions are met:\n{p}")
         max_tokens= 1000,
         temperature= 0,
         top_p= 1,
