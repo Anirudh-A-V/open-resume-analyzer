@@ -1,5 +1,5 @@
 ![joao-ferrao-4YzrcDNcRVg-unsplash](https://user-images.githubusercontent.com/76550448/222956996-23111943-b8c2-44ca-864e-ec22a801f676.jpg)
-# open-resume-analyser
+# Open Resumate
 
 A tool to filter resumes based on desirable qualities, skills, keywords and more.
 
@@ -12,13 +12,13 @@ This is a complete web application that can be used to filter resumes and analys
 The frontend of the application is built using React. This is a privacy friendly application as it does not store any of your data. It is completely open source and you can use it for free.
 
 ## Project Timeline
-**> What was the initial stage of the project ?** <br>
+- **What was the initial stage of the project ?** <br>
 Developed from scratch.<br>
 
-**> What stage is it in now?**<br>
+- **What stage is it in now?**<br>
 Project hosted live with all basic functionalties implemented. <br>Link: http://open-resume-analyzer.vercel.app/<br>
 
-**> How did you get there?**
+- **How did you get there?**
 ### DAY1
 <b>10:00 AM :</b> Project idea finalised.<br>
 <b>4:30 PM :</b> Basic frontend and google cloud API set up completed.<br>
@@ -29,7 +29,7 @@ Project hosted live with all basic functionalties implemented. <br>Link: http://
 <b>10:30 AM :</b> Frontend finalised.<br>
 <b>3:30 PM :</b> Project hosted and live.<br>
 
-**> What is working/not working?**<br>
+- **What is working/not working?**<br>
 Automated email to selected candidates is halfway implemented. 
 
 
@@ -53,6 +53,9 @@ Automated email to selected candidates is halfway implemented.
 3. Paste the link to the folder containing the resumes in the input field and Then select the parameters you want to analyse your resume on.
 4. Then click on the `Submit` button.
 5. The application will start to filter the resumes based on the parameters you have selected.
+
+## Screenshots
+![image](https://user-images.githubusercontent.com/76550448/222957632-fb92ce42-9d93-4899-94d8-fd718a77d45b.png)
 
 ### Contributors
 
