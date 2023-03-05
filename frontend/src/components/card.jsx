@@ -6,8 +6,11 @@ function Card({ data, add, remove, selected }) {
   return (
     <div>
       <div
-        className={`bg-gray-100 relative rounded-md p-4 m-3 ${selected.includes(uid) && "border-2 border-emerald-300 "
-          }`}
+        className={`bg-gray-100    relative rounded-md border-2 p-4 m-3 ${
+          selected.includes(uid)
+            ? "border-2 border-emerald-300 shadow-lg shadow-emerald-300/10 "
+            : "border-2 border-gray-100 "
+        }`}
       >
         <p className="font-medium text-xl">{name}</p>
         <p className="text-gray-600  w-full text-sm  mb-4">{mail}</p>
@@ -21,15 +24,15 @@ function Card({ data, add, remove, selected }) {
               add(uid);
             }}
             size={"1.2rem"}
-            className="text-gray-500 mt-3"
+            className="text-gray-500 cursor-pointer mt-3"
           />
         ) : (
           <CiCircleRemove
             onClick={() => {
               remove(uid);
             }}
-            size={"1.2rem"}
-            className="text-red-500 mt-3"
+            size={"1.3rem"}
+            className="text-red-500 cursor-pointer mt-3"
           />
         )}
       </div>

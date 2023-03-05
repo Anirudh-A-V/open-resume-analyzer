@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import { FaCloudUploadAlt } from "react-icons/fa";
 import Card from "./components/card";
@@ -7,7 +8,7 @@ function App() {
   const institute = ["IIT", "NIT", "Kerala University", "CUCET"];
   const skills = ["React", "Next.js", "Node.js", "Figma"];
   const languages = ["Hindi", "English", "Malayalam"];
-  
+
   const [userdata, setUserData] = useState([
     { name: "Don Jose Mathew", mail: "Examplez@example.com", uid: 768766768 },
     { name: "Anirudh", mail: "Examplez@example.com", uid: 768762232 },
@@ -94,10 +95,91 @@ function App() {
     }
     console.log(selected);
   };
-  
+
+  const getData = async () => {
+    console.log("Loading");
+    fetch("https://ashishanton.pythonanywhere.com/")
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data);
+        setLoading(true);
+      });
+
+    console.log(res);
+  };
+  const [loading, setLoading] = useState(false);
+  //getData();
+  //
+  const [URL, setURL] = useState("");
+
+  //console.log(code);
+  // const [selected, setSelected] = useState({
+  //   experience: [],
+  //   institute: [],
+  //   skills: [],
+  //   languages: [],
+  // });
+  const searchData = () => {
+    let work = "";
+    if (selected.experience.length > 0) {
+      work = "The person has had experience of ";
+      selected.experience.forEach((item) => (work += item + " or "));
+      work += "\n ";
+    }
+    console.log(work, "work");
+    let institue = "";
+    let index = 0;
+    console.log(selected.institute);
+    if (selected.institute.length > 0) {
+      institue = "The person has had undergraduate education in ";
+      selected.institute.forEach((item) => (institue += item + " or "));
+      institue += "\n ";
+    }
+
+    let skill = "";
+    console.log(selected.skills);
+    if (selected.skills.length > 0) {
+      skill = "The person has work experience in ";
+      selected.skills.forEach((item) => (skill += item + " and "));
+      skill += "\n ";
+    }
+
+    let languages = "";
+    if (selected.languages.length > 0) {
+      languages = "The person who understand languages ";
+      selected.languages.forEach((item) => (languages += item + " and "));
+      languages += "\n ";
+    }
+    let stringd = "";
+    let k = 0;
+    [work, institue, skill, languages].forEach((item, i) => {
+      if (item) {
+        stringd += `${++k}.` + item;
+      }
+    });
+    postData(stringd);
+  };
+
+  const postData = (promt) => {
+    const url = URL;
+    const split = url.split("/");
+    const code = split[split.length - 1].split("?")[0];
+    const query = {
+      url: code,
+      prompt: promt,
+    };
+    console.log(query);
+    axios({
+      method: "post",
+      url: "https://ashishanton.pythonanywhere.com/post",
+      data: query,
+    }).then((e) => {
+      console.log(e);
+    });
+  };
   return (
-    <div>
-      <div className="bg-[#D7DFDC] p-8 px-20">
+    <div className="relative">
+      <div className="bg-[#D7DFDC] p-8 px-20 relative">
         <div className="flex items-center flex-row justify-between">
           <div className="text-3xl text-blue-700 font-bold tracking-tight ">
             Resumate
@@ -108,16 +190,18 @@ function App() {
             className="h-20 w-20 rounded-full"
           />
         </div>
-
         <div className="w-full">
           <h2 className="text-3xl font-medium">Drop your Google drive link</h2>
           <div className="mt-3 relative flex flex-row items-center bg-white w-3/5 p-3 pl-6 rounded-full ">
             <FaCloudUploadAlt className="text-gray-400" size={"1.6rem"} />
-            <p className="text-gray-400 text-md ml-4">Add your text files...</p>
+
             <input
+              onChange={(e) => {
+                setURL(e.target.value);
+              }}
               placeholder="Add your text files..."
-              type="file"
-              className="transparent absolute r-0 w-4/5 h-full bg-gray-700 opacity-0 pl-5"
+              type="text"
+              className="transparent  r-0 w-4/5 h-full outline-none text-gray-700  pl-5"
             />
           </div>
         </div>
@@ -146,11 +230,22 @@ function App() {
       </div>
       <div className="flex flex-row mb-4 w-full justify-center">
         <div className=" h-full gap-2 w-4/6 grid grid-cols-3">
-          {userdata.map((item) => {
-            return (
-              <Card selected={candidates} add={add} remove={remove} data={item} />
-            );
-          })}
+          {loading ? (
+            userdata.map((item) => {
+              return (
+                <Card
+                  selected={candidates}
+                  add={add}
+                  remove={remove}
+                  data={item}
+                />
+              );
+            })
+          ) : (
+            <div className="p-5 w-full text-gray-500 py-20 items-center text-2xl justify-center flex col-span-4">
+              <p className="">Fetching Data...</p>
+            </div>
+          )}
         </div>
         <div className="p-4 bg-opacity-20 flex flex-col mx-10 bg-[#D7DFDC] w-1/6">
           <p className="font-medium text-gray-700">Work Experience</p>
@@ -161,11 +256,17 @@ function App() {
                 //   {item}
                 // </p>
                 selected.experience.includes(item) ? (
-                  <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs bg-gray-800 text-white  cursor-pointer" onClick={() => handleExperience(item)}>
+                  <p
+                    className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs bg-gray-800 text-white  cursor-pointer"
+                    onClick={() => handleExperience(item)}
+                  >
                     {item}
                   </p>
                 ) : (
-                  <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs cursor-pointer" onClick={() => handleExperience(item)}>
+                  <p
+                    className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs cursor-pointer"
+                    onClick={() => handleExperience(item)}
+                  >
                     {item}
                   </p>
                 )
@@ -180,11 +281,17 @@ function App() {
                 //   {item}
                 // </p>
                 selected.institute.includes(item) ? (
-                  <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs bg-gray-800 text-white  cursor-pointer" onClick={() => handleInstitute(item)}>
+                  <p
+                    className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs bg-gray-800 text-white  cursor-pointer"
+                    onClick={() => handleInstitute(item)}
+                  >
                     {item}
                   </p>
                 ) : (
-                  <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs cursor-pointer" onClick={() => handleInstitute(item)}>
+                  <p
+                    className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs cursor-pointer"
+                    onClick={() => handleInstitute(item)}
+                  >
                     {item}
                   </p>
                 )
@@ -194,35 +301,49 @@ function App() {
           <p className="font-medium mt-6 text-gray-700">Skills</p>
           <div className="mt-2 flex flex-wrap">
             {skills.map((item) => {
-              return (
-                selected.skills.includes(item) ? (
-                  <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs bg-gray-800 text-white  cursor-pointer" onClick={() => handleSkills(item)}>
-                    {item}
-                  </p>
-                ) : (
-                  <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs cursor-pointer" onClick={() => handleSkills(item)}>
-                    {item}
-                  </p>
-                )
-              )
+              return selected.skills.includes(item) ? (
+                <p
+                  className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs bg-gray-800 text-white  cursor-pointer"
+                  onClick={() => handleSkills(item)}
+                >
+                  {item}
+                </p>
+              ) : (
+                <p
+                  className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs cursor-pointer"
+                  onClick={() => handleSkills(item)}
+                >
+                  {item}
+                </p>
+              );
             })}
           </div>{" "}
           <p className="font-medium mt-6 text-gray-700">Languages</p>
           <div className="mt-2 flex flex-wrap">
             {languages.map((item) => {
-              return (
-                selected.languages.includes(item) ? (
-                  <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs bg-gray-800 text-white  cursor-pointer" onClick={() => handleLanguages(item)}>
-                    {item}
-                  </p>
-                ) : (
-                  <p className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs cursor-pointer" onClick={() => handleLanguages(item)}>
-                    {item}
-                  </p>
-                )
+              return selected.languages.includes(item) ? (
+                <p
+                  className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs bg-gray-800 text-white  cursor-pointer"
+                  onClick={() => handleLanguages(item)}
+                >
+                  {item}
+                </p>
+              ) : (
+                <p
+                  className="text-sm m-1 px-4 py-0 rounded-full tracking-tight bread-crumbs cursor-pointer"
+                  onClick={() => handleLanguages(item)}
+                >
+                  {item}
+                </p>
               );
             })}
           </div>
+          <button
+            onClick={searchData}
+            className="mt-3 p-2 bg-gray-800 text-white font-sm rounded-full cursor-pointer"
+          >
+            Search Candidates
+          </button>
         </div>
       </div>
     </div>
