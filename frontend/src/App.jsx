@@ -308,7 +308,7 @@ function App() {
 									remove={remove}
 									data={{
 										name: item.name,
-										email: item.mail,
+										mail: item.mail,
 									}}
 								/>
 							);
