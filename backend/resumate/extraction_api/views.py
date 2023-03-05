@@ -143,24 +143,13 @@ def postText(request):
         stop= "{}"
         )
         infos[x] = response.choices[0].text
-        # infos['text'] = f"Consider the following text enclosed within double quotes: \"{txt}\".This is the resume of a person applying for a job. Please see from the resume if the following conditions are met:\n{p}"
-        # infos['id'] = id
-        #export_pdf(real_file_id='1fNQmqfep--OjgmBXmgPEI4VedzyJaDGJ')
-    # print(response.choices[0].text)
-    # return Response(jsonify(infos))
-    
+        
     for file in files:
         os.remove(file)
         
     return JsonResponse(infos)
 
-# # Response(response.choices.text)
-#     return Response(txt)
-
 
 @api_view(['GET'])
 def getText(request):
-    # u = request.POST['url']
-    # p = request.POST['prompt']
-    # dict = {'url': u, 'prompt': p}
     return Response('Get request successfull')
